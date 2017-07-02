@@ -1,4 +1,5 @@
-RestSharp.Newtonsoft.Json.Tests/obj/
-RestSharp.Newtonsoft.Json/bin/
-RestSharp.Newtonsoft.Json/obj/
-RestSharp.Newtonsoft.Json.Tests/bin/
+RestSharp.Serializers.Newtonsoft.Json/obj/
+RestSharp.Serializers.Newtonsoft.Json.Tests/obj/
+RestSharp.Serializers.Newtonsoft.Json.Tests/bin/
+RestSharp.Serializers.Newtonsoft.Json/bin/Debug/netstandard1.6/RestSharp.Serializers.Newtonsoft.Json.deps.json
+RestSharp.Serializers.Newtonsoft.Json/bin/

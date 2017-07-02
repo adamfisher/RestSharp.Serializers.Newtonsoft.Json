@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>RestSharp.Newtonsoft.Json</PackageId>
+    <Title>RestSharp.Serializers.Newtonsoft.Json</Title>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageVersion>1.2.0</PackageVersion>
+    <Authors>Adam Fisher</Authors>
+    <Description>Restores Newtonsoft.JSON as the default serializer for RestSharp.</Description>
+    <PackageLicenseUrl>https://github.com/adamfisher/RestSharp.Serializers.Newtonsoft.Json/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/adamfisher/RestSharp.Serializers.Newtonsoft.Json</PackageProjectUrl>
+    <PackageIconUrl>https://pbs.twimg.com/profile_images/525503893/restsharp_400x400.png</PackageIconUrl>
+    <Copyright>Copyright 2017</Copyright>
+    <PackageTags>REST HTTP API JSON XML NEWTONSOFT RESTSHARP</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="RestSharp.NetCore" Version="105.2.3" />
+  </ItemGroup>
+
+</Project>

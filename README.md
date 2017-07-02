@@ -1,4 +1,4 @@
-# RestSharp.Newtonsoft.JSON
+# RestSharp.Serializers.Newtonsoft.Json
 
 This is a glue library that makes [Newtonsoft.JSON](https://github.com/JamesNK/Newtonsoft.Json) the default serializer for [RestSharp](https://github.com/restsharp/RestSharp). 
 
@@ -22,3 +22,4 @@ request.JsonSerializer = new NewtonsoftJsonSerializer();
 ```
 
 If you don't want to keep initializing every `RestRequest`, you can also use the **`RestSharp.Newtonsoft.Json.RestRequest`** class instead of the one from RestSharp. They are named the same but this class will default to using the Newtonsoft.JSON serialization engine.
+
