@@ -21,5 +21,5 @@ var request = new RestRequest();
 request.JsonSerializer = new NewtonsoftJsonSerializer();
 ```
 
-If you don't want to keep initializing every `RestRequest`, you can also use the **`RestSharp.Newtonsoft.Json.RestRequest`** class instead of the one from RestSharp. They are named the same but this class will default to using the Newtonsoft.JSON serialization engine.
+If you don't want to keep initializing every `RestRequest`, you can also use the **`RestSharp.Serializers.Newtonsoft.Json.RestRequest`** class instead of the one from RestSharp. They are named the same but this class will default to using the Newtonsoft.JSON serialization engine.
 
