@@ -1,1 +1,0 @@
-dotnet pack --no-build --configuration Release
