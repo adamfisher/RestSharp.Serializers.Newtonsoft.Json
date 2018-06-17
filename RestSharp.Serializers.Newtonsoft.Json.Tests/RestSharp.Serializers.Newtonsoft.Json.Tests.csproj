@@ -6,6 +6,14 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Package Nuget|AnyCPU'" />
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="4.19.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
@@ -17,6 +25,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RestSharp.Serializers.Newtonsoft.Json\RestSharp.Serializers.Newtonsoft.Json.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
 
 </Project>
