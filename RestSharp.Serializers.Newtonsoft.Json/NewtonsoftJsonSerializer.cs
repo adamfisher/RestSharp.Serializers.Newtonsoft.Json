@@ -17,8 +17,11 @@
 // Original JsonSerializer contributed by Daniel Crenna (@dimebrain)
 #endregion
 
+using System;
 using System.IO;
+using System.Threading;
 using Newtonsoft.Json;
+using RestSharp.Deserializers;
 
 namespace RestSharp.Serializers.Newtonsoft.Json
 {
@@ -26,12 +29,53 @@ namespace RestSharp.Serializers.Newtonsoft.Json
     /// Default JSON serializer for request bodies
     /// Doesn't currently use the SerializeAs attribute, defers to Newtonsoft's attributes
     /// </summary>
-    public class NewtonsoftJsonSerializer : ISerializer
+    public class NewtonsoftJsonSerializer : ISerializer, IDeserializer
     {
-        private readonly global::Newtonsoft.Json.JsonSerializer _serializer;
+        #region Fields & Properties
 
         /// <summary>
-        /// Default serializer
+        /// Gets the default NewtonsoftJsonSerializer instance.
+        /// </summary>
+        /// <value>
+        /// The default.
+        /// </value>
+        public static NewtonsoftJsonSerializer Default => _default.Value;
+
+        /// <summary>
+        /// The default instance holder.
+        /// </summary>
+        private static readonly Lazy<NewtonsoftJsonSerializer> _default = 
+            new Lazy<NewtonsoftJsonSerializer>(LazyThreadSafetyMode.PublicationOnly);
+
+        /// <summary>
+        /// Unused for JSON Serialization
+        /// </summary>
+        public string DateFormat { get; set; }
+
+        /// <summary>
+        /// Unused for JSON Serialization
+        /// </summary>
+        public string RootElement { get; set; }
+        /// <summary>
+        /// Unused for JSON Serialization
+        /// </summary>
+        public string Namespace { get; set; }
+        /// <summary>
+        /// Content type for serialized content
+        /// </summary>
+        public string ContentType { get; set; }
+
+        /// <summary>
+        /// The serializer implementation.
+        /// </summary>
+        private readonly global::Newtonsoft.Json.JsonSerializer _serializer;
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewtonsoftJsonSerializer"/> class.
         /// </summary>
         public NewtonsoftJsonSerializer()
         {
@@ -45,13 +89,18 @@ namespace RestSharp.Serializers.Newtonsoft.Json
         }
 
         /// <summary>
-        /// Default serializer with overload for allowing custom Json.NET settings
+        /// Initializes a new instance of the <see cref="NewtonsoftJsonSerializer"/> class.
         /// </summary>
+        /// <param name="serializer">The serializer.</param>
         public NewtonsoftJsonSerializer(global::Newtonsoft.Json.JsonSerializer serializer)
         {
             ContentType = "application/json";
             _serializer = serializer;
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Serialize the object as JSON
@@ -64,32 +113,32 @@ namespace RestSharp.Serializers.Newtonsoft.Json
             {
                 using (var jsonTextWriter = new JsonTextWriter(stringWriter))
                 {
-                    jsonTextWriter.Formatting = Formatting.Indented;
-                    jsonTextWriter.QuoteChar = '"';
-
                     _serializer.Serialize(jsonTextWriter, obj);
 
-                    var result = stringWriter.ToString();
-                    return result;
+                    return stringWriter.ToString();
                 }
             }
         }
 
         /// <summary>
-        /// Unused for JSON Serialization
+        /// Deserializes the specified response.
         /// </summary>
-        public string DateFormat { get; set; }
-        /// <summary>
-        /// Unused for JSON Serialization
-        /// </summary>
-        public string RootElement { get; set; }
-        /// <summary>
-        /// Unused for JSON Serialization
-        /// </summary>
-        public string Namespace { get; set; }
-        /// <summary>
-        /// Content type for serialized content
-        /// </summary>
-        public string ContentType { get; set; }
+        /// <typeparam name="T">The response type.</typeparam>
+        /// <param name="response">The response.</param>
+        /// <returns>The strongly-typed deserialized response.</returns>
+        public T Deserialize<T>(IRestResponse response)
+        {
+            var content = response.Content;
+
+            using (var stringReader = new StringReader(content))
+            {
+                using (var jsonTextReader = new JsonTextReader(stringReader))
+                {
+                    return _serializer.Deserialize<T>(jsonTextReader);
+                }
+            }
+        }
+
+        #endregion
     }
 }
