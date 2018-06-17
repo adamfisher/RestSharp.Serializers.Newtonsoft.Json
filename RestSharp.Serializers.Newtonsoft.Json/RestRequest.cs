@@ -76,7 +76,7 @@ namespace RestSharp.Serializers.Newtonsoft.Json
         /// </summary>
         protected void IntializeJsonSerializer()
         {
-            JsonSerializer = new NewtonsoftJsonSerializer();
+            JsonSerializer = NewtonsoftJsonSerializer.Default;
         }
 
         #endregion
