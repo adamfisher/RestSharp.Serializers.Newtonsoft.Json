@@ -29,7 +29,7 @@ namespace RestSharp.Serializers.Newtonsoft.Json.Tests
             var serializer = NewtonsoftJsonSerializer.Default;
             var result = serializer.Serialize(PersonObject);
 
-            result.ShouldBeEquivalentTo(PersonString);
+            result.Should().BeEquivalentTo(PersonString);
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace RestSharp.Serializers.Newtonsoft.Json.Tests
             var restResponse = new RestResponse() {Content = PersonString};
             var result = serializer.Deserialize<Person>(restResponse);
 
-            result.ShouldBeEquivalentTo(PersonObject);
+            result.Should().BeEquivalentTo(PersonObject);
         }
 
         public class Person
