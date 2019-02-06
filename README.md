@@ -1,5 +1,7 @@
 # RestSharp.Serializers.Newtonsoft.Json
 
+**DEPRECATED -- This library is no longer necessary since RestSharp has decided to bring back Newtonsoft.JSON support in v107.0. If you are using a version of RestSharp earlier than that, then this library may still be useful to you but will be unmaintained.**
+
 This is a glue library that makes [Newtonsoft.JSON](https://github.com/JamesNK/Newtonsoft.Json) the default serializer for [RestSharp](https://github.com/restsharp/RestSharp). 
 
 RestSharp removed Newtonsoft.JSON as a dependency in [version 103.0](https://github.com/restsharp/RestSharp/blob/master/releasenotes.markdown#1030---remove-dependency-on-jsonnet) which is great if you don't need all the extra capability Newtonsoft.JSON provides.
